@@ -33997,10 +33997,12 @@ paths:
                     title:
                       type: string
                     comments:
-                      type: object
-                      properties:
-                        body:
-                          type: string
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          body:
+                            type: string
                     creator:
                       type: string
               pagination:
@@ -34127,10 +34129,12 @@ paths:
                   title:
                     type: string
                   comments:
-                    type: object
-                    properties:
-                      body:
-                        type: string
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        body:
+                          type: string
                   creator:
                     type: string
         default:
@@ -69952,10 +69956,12 @@ definitions:
       title:
         type: string
       comments:
-        type: object
-        properties:
-          body:
-            type: string
+        type: array
+        items:
+          type: object
+          properties:
+            body:
+              type: string
       creator:
         type: string
   example.example.QueryAllPostResponse:
@@ -69972,10 +69978,12 @@ definitions:
             title:
               type: string
             comments:
-              type: object
-              properties:
-                body:
-                  type: string
+              type: array
+              items:
+                type: object
+                properties:
+                  body:
+                    type: string
             creator:
               type: string
       pagination:
@@ -70016,10 +70024,12 @@ definitions:
           title:
             type: string
           comments:
-            type: object
-            properties:
-              body:
-                type: string
+            type: array
+            items:
+              type: object
+              properties:
+                body:
+                  type: string
           creator:
             type: string
   example.example.QueryParamsResponse:

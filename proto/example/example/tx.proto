@@ -16,7 +16,7 @@ service Msg {
 message MsgCreatePost {
   string  creator  = 1;
   string  title    = 2;
-  Comment comments = 3;
+  repeated Comment comments = 3;
 }
 
 message MsgCreatePostResponse {
@@ -27,7 +27,7 @@ message MsgUpdatePost {
   string  creator  = 1;
   uint64  id       = 2;
   string  title    = 3;
-  Comment comments = 4;
+  repeated Comment comments = 4;
 }
 
 message MsgUpdatePostResponse {}

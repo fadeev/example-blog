@@ -28,9 +28,9 @@ var _ = math.Inf
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 type MsgCreatePost struct {
-	Creator  string   `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
-	Title    string   `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	Comments *Comment `protobuf:"bytes,3,opt,name=comments,proto3" json:"comments,omitempty"`
+	Creator  string     `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	Title    string     `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	Comments []*Comment `protobuf:"bytes,3,rep,name=comments,proto3" json:"comments,omitempty"`
 }
 
 func (m *MsgCreatePost) Reset()         { *m = MsgCreatePost{} }
@@ -80,7 +80,7 @@ func (m *MsgCreatePost) GetTitle() string {
 	return ""
 }
 
-func (m *MsgCreatePost) GetComments() *Comment {
+func (m *MsgCreatePost) GetComments() []*Comment {
 	if m != nil {
 		return m.Comments
 	}
@@ -132,10 +132,10 @@ func (m *MsgCreatePostResponse) GetId() uint64 {
 }
 
 type MsgUpdatePost struct {
-	Creator  string   `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
-	Id       uint64   `protobuf:"varint,2,opt,name=id,proto3" json:"id,omitempty"`
-	Title    string   `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
-	Comments *Comment `protobuf:"bytes,4,opt,name=comments,proto3" json:"comments,omitempty"`
+	Creator  string     `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	Id       uint64     `protobuf:"varint,2,opt,name=id,proto3" json:"id,omitempty"`
+	Title    string     `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
+	Comments []*Comment `protobuf:"bytes,4,rep,name=comments,proto3" json:"comments,omitempty"`
 }
 
 func (m *MsgUpdatePost) Reset()         { *m = MsgUpdatePost{} }
@@ -192,7 +192,7 @@ func (m *MsgUpdatePost) GetTitle() string {
 	return ""
 }
 
-func (m *MsgUpdatePost) GetComments() *Comment {
+func (m *MsgUpdatePost) GetComments() []*Comment {
 	if m != nil {
 		return m.Comments
 	}
@@ -343,7 +343,7 @@ var fileDescriptor_2046031f056b170e = []byte{
 	0x9c, 0xee, 0x5c, 0x94, 0x9a, 0x58, 0x92, 0x1a, 0x90, 0x5f, 0x5c, 0x22, 0x24, 0xc1, 0xc5, 0x9e,
 	0x0c, 0xe2, 0xe5, 0x17, 0x49, 0x30, 0x2a, 0x30, 0x6a, 0x70, 0x06, 0xc1, 0xb8, 0x42, 0x22, 0x5c,
 	0xac, 0x25, 0x99, 0x25, 0x39, 0xa9, 0x12, 0x4c, 0x60, 0x71, 0x08, 0x47, 0xc8, 0x84, 0x8b, 0x03,
-	0x6a, 0x62, 0xb1, 0x04, 0xb3, 0x02, 0xa3, 0x06, 0xb7, 0x91, 0x84, 0x1e, 0x9a, 0xfb, 0xf4, 0x9c,
+	0x6a, 0x62, 0xb1, 0x04, 0xb3, 0x02, 0xb3, 0x06, 0xb7, 0x91, 0x84, 0x1e, 0x9a, 0xfb, 0xf4, 0x9c,
 	0x21, 0x0a, 0x82, 0xe0, 0x2a, 0x95, 0xd4, 0xb9, 0x44, 0x51, 0xac, 0x0d, 0x4a, 0x2d, 0x2e, 0xc8,
 	0xcf, 0x2b, 0x4e, 0x15, 0xe2, 0xe3, 0x62, 0xca, 0x4c, 0x01, 0xdb, 0xcc, 0x12, 0xc4, 0x94, 0x99,
 	0xa2, 0xd4, 0xca, 0x08, 0x76, 0x60, 0x68, 0x41, 0x0a, 0x61, 0x07, 0x42, 0xf4, 0x32, 0xc1, 0xf4,
@@ -355,7 +355,7 @@ var fileDescriptor_2046031f056b170e = []byte{
 	0x01, 0xab, 0xa9, 0x08, 0x79, 0xec, 0xa6, 0x62, 0x86, 0x84, 0x93, 0xe1, 0x89, 0x47, 0x72, 0x8c,
 	0x17, 0x1e, 0xc9, 0x31, 0x3e, 0x78, 0x24, 0xc7, 0x38, 0xe1, 0xb1, 0x1c, 0xc3, 0x85, 0xc7, 0x72,
 	0x0c, 0x37, 0x1e, 0xcb, 0x31, 0x44, 0x89, 0xc3, 0xd2, 0x73, 0x05, 0x22, 0x83, 0x54, 0x16, 0xa4,
-	0x16, 0x27, 0xb1, 0x81, 0x13, 0xb6, 0x31, 0x20, 0x00, 0x00, 0xff, 0xff, 0x7a, 0x04, 0x6a, 0x71,
+	0x16, 0x27, 0xb1, 0x81, 0x13, 0xb6, 0x31, 0x20, 0x00, 0x00, 0xff, 0xff, 0xb7, 0xf0, 0x1f, 0xb4,
 	0x40, 0x03, 0x00, 0x00,
 }
 
@@ -531,17 +531,19 @@ func (m *MsgCreatePost) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.Comments != nil {
-		{
-			size, err := m.Comments.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
+	if len(m.Comments) > 0 {
+		for iNdEx := len(m.Comments) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Comments[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintTx(dAtA, i, uint64(size))
 			}
-			i -= size
-			i = encodeVarintTx(dAtA, i, uint64(size))
+			i--
+			dAtA[i] = 0x1a
 		}
-		i--
-		dAtA[i] = 0x1a
 	}
 	if len(m.Title) > 0 {
 		i -= len(m.Title)
@@ -608,17 +610,19 @@ func (m *MsgUpdatePost) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.Comments != nil {
-		{
-			size, err := m.Comments.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
+	if len(m.Comments) > 0 {
+		for iNdEx := len(m.Comments) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Comments[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintTx(dAtA, i, uint64(size))
 			}
-			i -= size
-			i = encodeVarintTx(dAtA, i, uint64(size))
+			i--
+			dAtA[i] = 0x22
 		}
-		i--
-		dAtA[i] = 0x22
 	}
 	if len(m.Title) > 0 {
 		i -= len(m.Title)
@@ -748,9 +752,11 @@ func (m *MsgCreatePost) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovTx(uint64(l))
 	}
-	if m.Comments != nil {
-		l = m.Comments.Size()
-		n += 1 + l + sovTx(uint64(l))
+	if len(m.Comments) > 0 {
+		for _, e := range m.Comments {
+			l = e.Size()
+			n += 1 + l + sovTx(uint64(l))
+		}
 	}
 	return n
 }
@@ -784,9 +790,11 @@ func (m *MsgUpdatePost) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovTx(uint64(l))
 	}
-	if m.Comments != nil {
-		l = m.Comments.Size()
-		n += 1 + l + sovTx(uint64(l))
+	if len(m.Comments) > 0 {
+		for _, e := range m.Comments {
+			l = e.Size()
+			n += 1 + l + sovTx(uint64(l))
+		}
 	}
 	return n
 }
@@ -953,10 +961,8 @@ func (m *MsgCreatePost) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.Comments == nil {
-				m.Comments = &Comment{}
-			}
-			if err := m.Comments.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			m.Comments = append(m.Comments, &Comment{})
+			if err := m.Comments[len(m.Comments)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -1191,10 +1197,8 @@ func (m *MsgUpdatePost) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.Comments == nil {
-				m.Comments = &Comment{}
-			}
-			if err := m.Comments.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			m.Comments = append(m.Comments, &Comment{})
+			if err := m.Comments[len(m.Comments)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex

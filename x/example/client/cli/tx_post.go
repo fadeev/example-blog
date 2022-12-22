@@ -5,6 +5,7 @@ import (
 
 	"encoding/json"
 	"example/x/example/types"
+
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/cosmos/cosmos-sdk/client/tx"
@@ -18,8 +19,8 @@ func CmdCreatePost() *cobra.Command {
 		Args:  cobra.ExactArgs(2),
 		RunE: func(cmd *cobra.Command, args []string) (err error) {
 			argTitle := args[0]
-			argComments := new(types.Comment)
-			err = json.Unmarshal([]byte(args[1]), argComments)
+			var argComments []*types.Comment
+			err = json.Unmarshal([]byte(args[1]), &argComments)
 			if err != nil {
 				return err
 			}
@@ -55,8 +56,8 @@ func CmdUpdatePost() *cobra.Command {
 
 			argTitle := args[1]
 
-			argComments := new(types.Comment)
-			err = json.Unmarshal([]byte(args[2]), argComments)
+			var argComments []*types.Comment
+			err = json.Unmarshal([]byte(args[1]), &argComments)
 			if err != nil {
 				return err
 			}

@@ -23,10 +23,10 @@ var _ = math.Inf
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 type Post struct {
-	Id       uint64   `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Title    string   `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	Comments *Comment `protobuf:"bytes,3,opt,name=comments,proto3" json:"comments,omitempty"`
-	Creator  string   `protobuf:"bytes,4,opt,name=creator,proto3" json:"creator,omitempty"`
+	Id       uint64     `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Title    string     `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	Comments []*Comment `protobuf:"bytes,3,rep,name=comments,proto3" json:"comments,omitempty"`
+	Creator  string     `protobuf:"bytes,4,opt,name=creator,proto3" json:"creator,omitempty"`
 }
 
 func (m *Post) Reset()         { *m = Post{} }
@@ -76,7 +76,7 @@ func (m *Post) GetTitle() string {
 	return ""
 }
 
-func (m *Post) GetComments() *Comment {
+func (m *Post) GetComments() []*Comment {
 	if m != nil {
 		return m.Comments
 	}
@@ -104,12 +104,12 @@ var fileDescriptor_bb5ecdbbf03fa1e9 = []byte{
 	0x0f, 0xaa, 0x5e, 0xa9, 0x86, 0x8b, 0x25, 0x20, 0xbf, 0xb8, 0x44, 0x88, 0x8f, 0x8b, 0x29, 0x33,
 	0x45, 0x82, 0x51, 0x81, 0x51, 0x83, 0x25, 0x88, 0x29, 0x33, 0x45, 0x48, 0x84, 0x8b, 0xb5, 0x24,
 	0xb3, 0x24, 0x27, 0x55, 0x82, 0x49, 0x81, 0x51, 0x83, 0x33, 0x08, 0xc2, 0x11, 0x32, 0xe1, 0xe2,
-	0x80, 0x6a, 0x2f, 0x96, 0x60, 0x56, 0x60, 0xd4, 0xe0, 0x36, 0x92, 0xd0, 0x43, 0xb3, 0x50, 0xcf,
+	0x80, 0x6a, 0x2f, 0x96, 0x60, 0x56, 0x60, 0xd6, 0xe0, 0x36, 0x92, 0xd0, 0x43, 0xb3, 0x50, 0xcf,
 	0x19, 0xa2, 0x20, 0x08, 0xae, 0x52, 0x48, 0x82, 0x8b, 0x3d, 0xb9, 0x28, 0x35, 0xb1, 0x24, 0xbf,
 	0x48, 0x82, 0x05, 0x6c, 0x1a, 0x8c, 0xeb, 0x64, 0x78, 0xe2, 0x91, 0x1c, 0xe3, 0x85, 0x47, 0x72,
 	0x8c, 0x0f, 0x1e, 0xc9, 0x31, 0x4e, 0x78, 0x2c, 0xc7, 0x70, 0xe1, 0xb1, 0x1c, 0xc3, 0x8d, 0xc7,
 	0x72, 0x0c, 0x51, 0xe2, 0x30, 0xe7, 0x56, 0xc0, 0x1d, 0x5e, 0x52, 0x59, 0x90, 0x5a, 0x9c, 0xc4,
-	0x06, 0x76, 0xb7, 0x31, 0x20, 0x00, 0x00, 0xff, 0xff, 0x9f, 0x6e, 0x69, 0xed, 0x05, 0x01, 0x00,
+	0x06, 0x76, 0xb7, 0x31, 0x20, 0x00, 0x00, 0xff, 0xff, 0xb5, 0x9b, 0x64, 0x05, 0x05, 0x01, 0x00,
 	0x00,
 }
 
@@ -140,17 +140,19 @@ func (m *Post) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x22
 	}
-	if m.Comments != nil {
-		{
-			size, err := m.Comments.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
+	if len(m.Comments) > 0 {
+		for iNdEx := len(m.Comments) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Comments[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintPost(dAtA, i, uint64(size))
 			}
-			i -= size
-			i = encodeVarintPost(dAtA, i, uint64(size))
+			i--
+			dAtA[i] = 0x1a
 		}
-		i--
-		dAtA[i] = 0x1a
 	}
 	if len(m.Title) > 0 {
 		i -= len(m.Title)
@@ -191,9 +193,11 @@ func (m *Post) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovPost(uint64(l))
 	}
-	if m.Comments != nil {
-		l = m.Comments.Size()
-		n += 1 + l + sovPost(uint64(l))
+	if len(m.Comments) > 0 {
+		for _, e := range m.Comments {
+			l = e.Size()
+			n += 1 + l + sovPost(uint64(l))
+		}
 	}
 	l = len(m.Creator)
 	if l > 0 {
@@ -317,10 +321,8 @@ func (m *Post) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.Comments == nil {
-				m.Comments = &Comment{}
-			}
-			if err := m.Comments.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			m.Comments = append(m.Comments, &Comment{})
+			if err := m.Comments[len(m.Comments)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex

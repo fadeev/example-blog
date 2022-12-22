@@ -13,7 +13,7 @@ const (
 
 var _ sdk.Msg = &MsgCreatePost{}
 
-func NewMsgCreatePost(creator string, title string, comments *Comment) *MsgCreatePost {
+func NewMsgCreatePost(creator string, title string, comments []*Comment) *MsgCreatePost {
 	return &MsgCreatePost{
 		Creator:  creator,
 		Title:    title,
@@ -52,7 +52,7 @@ func (msg *MsgCreatePost) ValidateBasic() error {
 
 var _ sdk.Msg = &MsgUpdatePost{}
 
-func NewMsgUpdatePost(creator string, id uint64, title string, comments *Comment) *MsgUpdatePost {
+func NewMsgUpdatePost(creator string, id uint64, title string, comments []*Comment) *MsgUpdatePost {
 	return &MsgUpdatePost{
 		Id:       id,
 		Creator:  creator,
