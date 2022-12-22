@@ -1,0 +1,9 @@
+syntax = "proto3";
+package example.example;
+
+option go_package = "example/x/example/types";
+
+message Comment {
+  
+  string body = 1; 
+}
