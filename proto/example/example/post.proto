@@ -1,0 +1,12 @@
+syntax = "proto3";
+package example.example;
+
+option go_package = "example/x/example/types";
+import "example/example/comment.proto"; 
+
+message Post {
+  uint64 id = 1;
+  string title = 2; 
+  Comment comments = 3; 
+  string creator = 4;
+}

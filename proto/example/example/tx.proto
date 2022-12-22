@@ -1,7 +1,41 @@
 syntax = "proto3";
+
 package example.example;
+
+import "example/example/post.proto";
+import "example/example/comment.proto";
 
 option go_package = "example/x/example/types";
 
 // Msg defines the Msg service.
-service Msg {}
+service Msg {
+  rpc CreatePost (MsgCreatePost) returns (MsgCreatePostResponse);
+  rpc UpdatePost (MsgUpdatePost) returns (MsgUpdatePostResponse);
+  rpc DeletePost (MsgDeletePost) returns (MsgDeletePostResponse);
+}
+message MsgCreatePost {
+  string  creator  = 1;
+  string  title    = 2;
+  Comment comments = 3;
+}
+
+message MsgCreatePostResponse {
+  uint64 id = 1;
+}
+
+message MsgUpdatePost {
+  string  creator  = 1;
+  uint64  id       = 2;
+  string  title    = 3;
+  Comment comments = 4;
+}
+
+message MsgUpdatePostResponse {}
+
+message MsgDeletePost {
+  string creator = 1;
+  uint64 id      = 2;
+}
+
+message MsgDeletePostResponse {}
+
